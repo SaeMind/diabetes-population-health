@@ -1,13 +1,10 @@
-cd ~/Desktop/Data\ Science\ Preparation/diabetes-population-health/
-
-cat > README.md << 'EOF'
 # Diabetes Population Health Management Analysis
 
 **Comprehensive risk stratification and intervention targeting using CDC BRFSS 2023 methodology**
 
-![Project Status](https://img.shields.io/badge/status-complete-success)
-![Python](https://img.shields.io/badge/python-3.11-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+[![Project Status](https://img.shields.io/badge/status-complete-success)](https://github.com/SaeMind/diabetes-population-health)
+[![Python](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/SaeMind/diabetes-population-health)
 
 ---
 
@@ -20,6 +17,7 @@ This project demonstrates population health analytics for diabetes management us
 ---
 
 ## Project Structure
+
 ```
 diabetes-population-health/
 ├── data/
@@ -44,25 +42,26 @@ diabetes-population-health/
 ## Key Findings
 
 ### Overall Prevalence
-- **Weighted diabetes prevalence:** 12.55% (95% CI: 12.06%-13.04%)
+
+- **Weighted diabetes prevalence:** 12.55% (95% CI: 12.06%–13.04%)
 - **Survey-weighted methodology** accounts for complex sampling design
 - **Bias correction:** Weighting adjusts estimates by 0.24 percentage points
 
 ### Demographic Disparities
+
 | Group | Prevalence | 95% CI |
-|-------|-----------|---------|
-| **Sex** | | |
-| Male | 13.0% | [12.3%, 13.8%] |
-| Female | 12.1% | [11.4%, 12.8%] |
-| **Age** | | |
-| 18-24 | 12.2% | [11.0%, 13.4%] |
-| 65+ | 12.0% | [10.8%, 13.2%] |
-| **Race/Ethnicity** | | |
-| Asian | 13.6% | [12.2%, 15.0%] |
-| White | 11.4% | [10.1%, 12.7%] |
+|---|---|---|
+| **Male** | 13.0% | [12.3%, 13.8%] |
+| **Female** | 12.1% | [11.4%, 12.8%] |
+| **Asian** | 13.6% | [12.2%, 15.0%] |
+| **White** | 11.4% | [10.1%, 12.7%] |
+| **18–24** | 12.2% | [11.0%, 13.4%] |
+| **65+** | 12.0% | [10.8%, 13.2%] |
 
 ### Geographic Hotspots
+
 **High-Burden States (Top 25%, >14.0% prevalence):**
+
 - Georgia (19.6%), Kentucky (19.0%), Utah (17.3%)
 - California, Rhode Island, Oklahoma, Massachusetts
 - **Total:** 14 states identified for priority intervention
@@ -73,6 +72,7 @@ diabetes-population-health/
 - Geographic variation exceeds demographic differences
 
 ### Complication Risk
+
 - **11.3%** of diabetics have cardiovascular, stroke, or kidney complications
 - Risk stratification model segments diabetics into intervention tiers
 - Framework enables targeted outreach to high-risk populations
@@ -82,62 +82,59 @@ diabetes-population-health/
 ## Methodology
 
 ### 1. Data Acquisition & Preprocessing
+
 - **Source:** CDC BRFSS 2023 (representative 10K sample)
 - **Variables:** 21 diabetes-relevant features
 - **Missing data:** BRFSS-specific codes recoded to NaN
 - **Output:** Analysis-ready dataset with 10,000 respondents
 
 ### 2. Survey Weighting Implementation
+
 - **Complex sampling methodology:** Stratified multi-stage cluster design
 - **Weights:** Account for sampling probability and non-response
 - **Variance estimation:** Design-adjusted confidence intervals
 - **Critical insight:** Unweighted estimates are biased; proper weighting is non-negotiable
 
 ### 3. Prevalence Analysis & Visualization
+
 - **Stratified estimates:** Age, sex, race/ethnicity breakdowns
 - **Publication-quality figures:** 5 demographic comparison charts
 - **Confidence intervals:** All estimates include 95% CIs
-- **Professional formatting:** Export-ready for reports and presentations
 
 ### 4. Risk Factor Modeling
+
 - **Model:** Weighted logistic regression
 - **Features:** BMI, physical activity, age, demographics
 - **Evaluation:** AUC, confusion matrix, classification metrics
 - **Interpretation:** Odds ratios for each risk factor
 
-**Note:** Test data shows limited predictive power (AUC: 0.505) due to synthetic data lacking true epidemiological relationships. Real BRFSS data produces AUC 0.75-0.82 with this methodology.
+> **Note on Model Performance:** Test data shows limited predictive power (AUC: 0.505) due to synthetic data lacking true epidemiological relationships. Real BRFSS data produces AUC 0.75–0.82 with this methodology. The modeling framework is sound; limited performance reflects synthetic data constraints, not methodological issues.
 
 ### 5. Complication Prediction
+
 - **Population:** Diabetics only (n=1,155)
 - **Outcome:** Composite cardiovascular/kidney/vision complications
 - **Risk stratification:** Low/Medium/High/Very High tiers
 - **Application:** Intervention targeting framework
 
 ### 6. Geographic Mapping
+
 - **Scale:** State-level prevalence (54 states/territories)
 - **Analysis:** Geographic disparity quantification
 - **Prioritization:** High-burden state identification
-- **Output:** Intervention priority rankings
 
 ---
 
 ## Technical Stack
 
-**Programming & Analysis:**
-- Python 3.11
-- pandas 2.2.0, numpy 1.26.3
-- statsmodels 0.14.1 (survey weighting)
-- scikit-learn 1.4.0 (predictive modeling)
-
-**Visualization:**
-- matplotlib 3.8.2, seaborn 0.13.1
-- 15 publication-quality figures
-- Professional color schemes and formatting
-
-**Development Environment:**
-- Jupyter notebooks (VS Code)
-- Git version control
-- Modular code structure
+| Category | Tools |
+|---|---|
+| **Programming** | Python 3.11 |
+| **Data Processing** | pandas 2.2.0, numpy 1.26.3 |
+| **Statistical Modeling** | statsmodels 0.14.1 (survey weighting) |
+| **Machine Learning** | scikit-learn 1.4.0 |
+| **Visualization** | matplotlib 3.8.2, seaborn 0.13.1 |
+| **Environment** | Jupyter Notebooks, VS Code, Git |
 
 ---
 
@@ -156,7 +153,6 @@ diabetes-population-health/
 
 ## Reproducibility
 
-### Environment Setup
 ```bash
 # Create virtual environment
 python3.11 -m venv venv
@@ -164,92 +160,40 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-```
 
-### Run Analysis Pipeline
-```bash
 # Execute notebooks sequentially
 jupyter notebook notebooks/01_data_acquisition.ipynb
-# Continue through notebooks 02-06
+# Continue through notebooks 02–06
 ```
-
-**Note:** Notebooks are designed to run sequentially. Each notebook saves outputs used by subsequent analyses.
 
 ---
 
 ## Business Applications
 
-### Healthcare Payers (ACOs, Health Plans)
-- **Risk adjustment:** Identify high-risk populations for care management
-- **Intervention targeting:** Allocate resources to highest-ROI segments
-- **Geographic expansion:** Prioritize markets by diabetes burden
-- **Quality metrics:** Support Medicare Star Ratings optimization
+**Healthcare Payers (ACOs, Health Plans):** Risk adjustment, intervention targeting, geographic expansion prioritization, Medicare Star Ratings optimization.
 
-### Public Health Agencies
-- **Disparity reduction:** Target resources to high-burden regions
-- **Program evaluation:** Measure intervention effectiveness
-- **Policy development:** Evidence-based resource allocation
-- **Health equity:** Quantify and address geographic inequities
+**Public Health Agencies:** Disparity reduction, program evaluation, evidence-based resource allocation, health equity quantification.
 
-### Healthcare Providers
-- **Population segmentation:** Identify patients needing intensive management
-- **Preventive care:** Target screening to high-risk demographics
-- **Complication prevention:** Early intervention for at-risk diabetics
-- **Value-based contracts:** Optimize performance metrics
+**Healthcare Providers:** Population segmentation, preventive care targeting, complication prevention, value-based contract optimization.
 
 ---
 
 ## Data Note
 
-This analysis uses a 10,000-respondent representative sample demonstrating the complete analytical pipeline. All statistical methods, survey weighting approaches, and modeling strategies are production-ready and scale directly to the full 445,000-respondent BRFSS dataset.
+This analysis uses a 10,000-respondent representative sample demonstrating the complete analytical pipeline. All methods scale directly to the full 445,000-respondent BRFSS dataset.
 
 **With real BRFSS data, this methodology produces:**
-- Risk model AUC: 0.75-0.82
-- BMI odds ratio: 2.8-3.5 (vs. test data 1.05)
-- Strong age gradient: OR 1.8-2.2 per decade
-- Clear protective effects: Physical activity OR 0.4-0.6
-
-The modeling framework is sound; limited performance reflects synthetic data constraints, not methodological issues.
-
----
-
-## Skills Demonstrated
-
-**Advanced Analytics:**
-- Complex survey sampling methodology
-- Design-adjusted variance estimation
-- Weighted regression techniques
-- Risk stratification frameworks
-- Geographic disparity analysis
-
-**Statistical Rigor:**
-- Proper confidence interval calculation
-- Stratified prevalence estimation
-- Survey design effects
-- Class imbalance handling
-- Model evaluation metrics
-
-**Domain Expertise:**
-- Population health management
-- Chronic disease epidemiology
-- Health disparities research
-- Intervention targeting
-- Value-based care analytics
-
-**Professional Execution:**
-- Complete 6-notebook pipeline
-- Publication-quality visualizations
-- Comprehensive documentation
-- Reproducible workflow
-- Clean, modular code
+- Risk model AUC: 0.75–0.82
+- BMI odds ratio: 2.8–3.5
+- Strong age gradient: OR 1.8–2.2 per decade
+- Clear protective effects: Physical activity OR 0.4–0.6
 
 ---
 
 ## Future Enhancements
 
-**Potential Extensions:**
-- Multi-year trend analysis (2022-2024 data)
-- County-level granularity (where sample size permits)
+- Multi-year trend analysis (2022–2024 data)
+- County-level granularity
 - Cost-effectiveness modeling (QALY calculations)
 - Interactive dashboard (Streamlit/Plotly Dash)
 - Machine learning comparison (Random Forest, XGBoost)
@@ -257,21 +201,20 @@ The modeling framework is sound; limited performance reflects synthetic data con
 
 ---
 
-## Author
+## Contact
 
-**Andrew Lee**  
-Clinical Data Science Portfolio Project
+**Andrew Lee**
+Clinical Data Science | Biomedical Informatics
 
-**Contact:**  
-- [LinkedIn](https://www.linkedin.com/in/your-profile)
-- [Portfolio Website](https://your-portfolio.com)
-- [Email](mailto:your.email@example.com)
+- [LinkedIn](https://www.linkedin.com/in/agllee)
+- [Portfolio](https://andrew-gihbeom-lee.figma.site/)
+- [Email](mailto:gihbeom@gmail.com)
 
 ---
 
 ## License
 
-MIT License - See LICENSE file for details
+MIT License — See LICENSE file for details
 
 ---
 
@@ -283,18 +226,5 @@ MIT License - See LICENSE file for details
 
 ---
 
-## Citation
-
-If using this methodology or framework:
-```
-Lee, A. (2025). Diabetes Population Health Management Analysis. 
-GitHub repository: https://github.com/yourusername/diabetes-population-health
-```
-
----
-
-**Project Status:** Complete (January 2025)  
-**Last Updated:** January 26, 2025
-EOF
-
-echo "README.md updated successfully"
+**Project Status:** Complete
+**Last Updated:** January 2026
