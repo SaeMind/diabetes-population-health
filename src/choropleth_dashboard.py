@@ -180,11 +180,10 @@ if page == "🗺️ Choropleth Map":
                 margin=dict(l=0, r=0, t=40, b=0),
                 height=520,
                 coloraxis_colorbar=dict(
-                    title=f"{cfg['unit']}",
+                    title=dict(text=f"{cfg['unit']}", font=dict(color="white")),
                     thickness=15,
                     len=0.7,
                     tickfont=dict(color="white"),
-                    titlefont=dict(color="white"),
                 ),
             )
             fig.update_traces(
@@ -321,16 +320,26 @@ elif page == "🔗 Risk Factor Correlations":
         ("uninsured_pct",               "Uninsured Rate (%)"),
     ]
 
+    import plotly.graph_objects as go
+    import plotly.express as px
+
     cols = st.columns(2)
     for i, (rf_col, rf_label) in enumerate(risk_factors):
         with cols[i % 2]:
             corr = df["diabetes_prevalence_pct"].corr(df[rf_col])
+
+            # Manual trendline (avoids statsmodels dependency)
+            x_vals = df[rf_col].values
+            y_vals = df["diabetes_prevalence_pct"].values
+            m, b = np.polyfit(x_vals, y_vals, 1)
+            x_line = np.linspace(x_vals.min(), x_vals.max(), 100)
+            y_line = m * x_line + b
+
             fig_sc = px.scatter(
                 df,
                 x=rf_col,
                 y="diabetes_prevalence_pct",
                 text="state_abbr",
-                trendline="ols",
                 color="diabetes_prevalence_pct",
                 color_continuous_scale="Reds",
                 labels={
@@ -340,6 +349,13 @@ elif page == "🔗 Risk Factor Correlations":
                 title=f"r = {corr:.3f}",
                 hover_name="state",
             )
+            fig_sc.add_trace(go.Scatter(
+                x=x_line, y=y_line,
+                mode="lines",
+                line=dict(color="rgba(255,255,255,0.6)", width=1.5, dash="dash"),
+                showlegend=False,
+                hoverinfo="skip",
+            ))
             fig_sc.update_traces(
                 textposition="top center",
                 textfont=dict(size=7, color="white"),
