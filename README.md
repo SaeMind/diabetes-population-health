@@ -228,3 +228,24 @@ MIT License — See LICENSE file for details
 
 **Project Status:** Complete
 **Last Updated:** January 2026
+
+---
+
+## Streamlit Choropleth Dashboard
+
+Interactive US state-level choropleth for diabetes population health metrics
+derived from CDC BRFSS 2021 data.
+
+### Launch
+
+```bash
+pip install -r requirements.txt
+streamlit run src/choropleth_dashboard.py
+```
+
+### Dashboard Pages
+
+- **Choropleth Map** — Interactive US map with 8 selectable metrics, top/bottom 10 states
+- **State Rankings** — Bar chart + full sortable table across all metrics
+- **Risk Factor Correlations** — Scatter plots + correlation heatmap
+- **State Risk Profile** — Radar chart: selected state vs national average
